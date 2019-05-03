@@ -1,0 +1,16 @@
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY"}}
+{{~/inline~}}
+
+<html>
+  <body>
+    <h1>Votre demande de rendez-vous est déclinée.</h1>
+
+    {{#with transaction}}
+    <p>Malheureusement {{provider.display-name}} a décliné votre demande de rendez-vous pour {{listing.title}} du {{> format-date date=booking.start}} au {{> format-date date=booking.end}}. Vous n'avez pas été facturé.</p>
+    {{/with}}
+
+    <p><a href="{{marketplace.url}}">Vous pouvez réservez un autre rendez-vous dès maintenant</a></p>
+  </body>
+</html>

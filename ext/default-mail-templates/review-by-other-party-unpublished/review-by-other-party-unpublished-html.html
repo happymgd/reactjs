@@ -1,0 +1,13 @@
+<html>
+  <body>
+    {{#with transaction}}
+    <h1>Prenez connaissance du l'avis laissé par {{other-party.display-name}}!</h1>
+
+    <p>{{other-party.display-name}} a laissé un avis. Pour le consulter, veuillez nous décrire votre expérience.</p>
+
+    <p>
+      <a href="{{marketplace.url}}/{{#eq recipient-role "customer"}}order{{else}}sale{{/eq}}/{{url-encode id}}/details">Leave a review</a>
+    </p>
+    {{/with}}
+  </body>
+</html>

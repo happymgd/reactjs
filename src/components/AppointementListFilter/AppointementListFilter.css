@@ -1,0 +1,25 @@
+@import '../../marketplace.css';
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 0;
+}
+.checkbox__input {
+  flex: 0.1;
+}
+.content{
+    flex: 0.8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.label {
+  font-size: 16px;
+}
+.color{
+    min-width:12px;
+    height:12px;
+    background-color: green;
+}

@@ -1,0 +1,19 @@
+<html>
+  <body>
+    {{#with transaction}}
+    <h1>{{other-party.display-name}} a laissé un avis que voici</h1>
+
+    {{#each reviews}}
+      {{#eq recipient.id subject.id}}
+        <blockquote><i>"{{content}}"</i></blockquote>
+      {{/eq}}
+    {{/each}}
+
+    <p>L'avis est publié sur votre profil Guerizen.</p>
+
+    <p>
+      <a href="{{marketplace.url}}/u/{{url-encode recipient.id}}">Consulter votre profil.</a>
+    </p>
+    {{/with}}
+  </body>
+</html>

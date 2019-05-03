@@ -1,0 +1,25 @@
+@import '../../marketplace.css';
+
+.pageRoot {
+  display: flex;
+  padding-bottom: 90px;
+  @media (--viewportLarge) {
+    padding-bottom: 0;
+  }
+}
+
+
+/*main content*/
+.contentWrap{
+  display: flex;
+
+}
+.contentMain{
+  display: flex;
+  flex:.8;
+  
+}
+.contentAside{
+  display: flex;
+  flex:.2;  
+}

@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <p>Bonjour {{recipient.first-name}},</p>
+
+    <p>Afin d'achever votre inscription sur Guerizen, veuillez cliquer sur le lien ci-après:</p>
+
+    <p><a href="{{marketplace.url}}/verify-email?t={{form-encode email-verification.token}}">{{marketplace.url}}/verify-email?t={{form-encode email-verification.token}}</a></p>
+
+
+    <p>Si vous n'utilisez pas ce lien dans les deux jours, celui-ci expirera. Vous pourrez faire une requête pour recevoir un nouveau lien.</p>
+
+    <p>À bientôt,<br />L'équipe Guerizen</p>
+  </body>
+</html>

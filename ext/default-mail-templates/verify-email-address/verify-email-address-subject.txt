@@ -1,0 +1,1 @@
+Vérification de votre adresse e-mail pour {{marketplace.name}}

@@ -1,0 +1,16 @@
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY"}}
+{{~/inline~}}
+
+<html>
+  <body>
+    <h1>Votre demande de rendzz-vous est expirée.</h1>
+
+    {{#with transaction}}
+    <p>Malheureusement {{provider.display-name}} n'a pas donné une réponse assez rapidement concernant votre demande de rendez-vous pour {{listing.title}} du {{> format-date date=booking.start}} au {{> format-date date=booking.end}}. C'est pourquoi la demande est maintenant expirée. Vous n'avez pas été facturé.</p>
+    {{/with}}
+
+    <p><a href="{{marketplace.url}}">Vous pouvez faire une autre demande de réservation dès maintenant !</a></p>
+  </body>
+</html>

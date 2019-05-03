@@ -1,0 +1,11 @@
+<html>
+  <body>
+    {{#with transaction}}
+    <h1>Comment était votre expérience avec {{listing.title}}? Laissez un avis!</h1>
+
+    <p>Vous avez récemment fait une réservation de {{listing.title}} avec {{provider.display-name}}. Veuillez laisser un avis nous décrivant votre expérience, ils aident les autres membres de la communauté Guerizen {{marketplace.name}} community.</p>
+
+    <p><a href="{{marketplace.url}}/order/{{url-encode id}}/details">Laisser un avis</a></p>
+    {{/with}}
+  </body>
+</html>

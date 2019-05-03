@@ -1,0 +1,1 @@
+{{transaction.provider.display-name}} a décliné votre demande de rendez-vous.

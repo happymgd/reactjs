@@ -1,0 +1,117 @@
+version: 2
+jobs:
+#  format:
+#    docker:
+#      - image: circleci/node:8.11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          name: Restore Yarn Package Cache
+#          keys:
+#            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#            - yarn-packages-{{ .Branch }}
+#            - yarn-packages-master
+#            - yarn-packages-
+#      - run:
+#          name: Install Dependencies
+#          command: yarn install
+#      - save_cache:
+#          name: Save Yarn Package Cache
+#          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#          paths:
+#            - node_modules/
+#      - run:
+#          name: Check code formatting
+#          command: yarn run format-ci
+#  test:
+#    docker:
+#      - image: circleci/node:8.11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          name: Restore Yarn Package Cache
+#          keys:
+#            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#            - yarn-packages-{{ .Branch }}
+#            - yarn-packages-master
+#            - yarn-packages-
+#      - run:
+#          name: Install Dependencies
+#          command: yarn install
+#      - save_cache:
+#          name: Save Yarn Package Cache
+#          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#          paths:
+#            - node_modules/
+#      - run:
+#          name: Run test suite
+#          command: yarn run test-ci
+  build_deploy:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "7f:fb:4a:7d:90:7b:36:09:da:d2:2a:65:a9:d6:14:af"
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ .Branch }}
+            - yarn-packages-master
+            - yarn-packages-
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+      - run:
+          name: Build client application and Deploy
+          command: |
+            yarn run build
+            git add build -f 
+            git config --global user.name "etienneguerizen"
+            git config --global user.email "etienne@guerizen.com"
+            git config --global user.password "druidetech"
+            git commit -m "deploy after build by CircleCI"
+            git remote add clever https://a23ab62e7b694eeea615996db4db75f1:bad3a2d987284dbaa7690edb6af079b9@push-par-clevercloud-customers.services.clever-cloud.com/app_0a072349-dd62-49b2-a4c3-875b9d4f88a3.git
+            git pull clever master
+            git push clever master
+#            git push -q https://etienneguerizen:druidetech@bitbucket.org/bilidjo/guerizenwebtemplate.git master
+#  audit:
+#    docker:
+#      - image: circleci/node:8.11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          name: Restore Yarn Package Cache
+#          keys:
+#            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#            - yarn-packages-{{ .Branch }}
+#            - yarn-packages-master
+#            - yarn-packages-
+#      - run:
+#          name: Install Dependencies
+#          command: yarn install
+#      - save_cache:
+#          name: Save Yarn Package Cache
+#          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+#          paths:
+#            - node_modules/
+#      - run:
+#          name: Audit dependencies
+#          command: yarn run audit         
+workflows:
+  version: 2
+#  format_test_build_audit_deploy:
+  build_deploy:
+    jobs:
+#      - format
+#      - test
+      - build_deploy
+#      - audit

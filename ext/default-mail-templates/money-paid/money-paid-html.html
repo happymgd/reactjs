@@ -1,0 +1,57 @@
+
+{{~#*inline "format-money"~}}
+{{money-amount money}} {{money.currency}}
+{{~/inline~}}
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY"}}
+{{~/inline~}}
+
+<html>
+  <body>
+    {{#with transaction}}
+    <h1>Vous avez été payé {{> format-money money=payout-total}}</h1>
+
+    <p>Nous vous avons envoyé {{> format-money money=payout-total}} pour le rendez-vous {{listing.title}} du {{> format-date date=booking.start}} au {{> format-date date=booking.end}} par {{customer.display-name}}. Le transfert sur votre compte bancaire peut prendre jusqu'à 7 jours.</p>
+
+    <p>Voilà le détail:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left;">Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each line-items}}
+        {{#contains include-for "provider"}}
+          <tr>
+            {{#eq "day" code}}
+            <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "day" "days"}}</td>
+            <td style="text-align: right; padding-left: 20px">{{> format-money money=line-total}}</td>
+            {{/eq}}
+
+            {{#eq "night" code}}
+            <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "night" "nights"}}</td>
+            <td style="text-align: right; padding-left: 20px">{{> format-money money=line-total}}</td>
+            {{/eq}}
+
+            {{#eq "provider-commission" code}}
+            <td>{{marketplace.name}} fee:</td>
+            <td style="text-align: right; padding-left: 20px;">{{> format-money money=line-total}}</td>
+            {{/eq}}
+          </tr>
+        {{/contains}}
+      {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th style="text-align: left;">You earn</th>
+          <th style="text-align: right; padding-left: 20px;">{{> format-money money=payout-total}}</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    {{/with}}
+  </body>
+</html>

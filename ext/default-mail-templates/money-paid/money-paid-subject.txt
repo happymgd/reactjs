@@ -1,0 +1,1 @@
+Vous avez reçu un paiement de {{money-amount transaction.payout-total}} {{transaction.payout-total.currency}}

@@ -1,0 +1,169 @@
+@import '../../marketplace.css';
+
+:root {
+  /*
+    These variables are available in global scope through ":root"
+    element (<html> tag). Variables with the same names are going to
+    overwrite each other if CSS Properties' (PostCSS plugin)
+    configuration "preserve: true" is used - meaning that variables
+    are left to CSS bundle. We are planning to enable it in the future
+    since browsers support CSS Properties already.
+ */
+
+  --SectionPraticien_desktopTitleMaxWidth: 625px;
+
+  
+}
+.root {
+  @apply --backgroundImage;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  /* Text positioning is done with paddings */
+}
+
+.PraticienContent {
+  margin: 0 24px 0 24px;
+
+  @media (--viewportMedium) {
+    margin: 0 7.5vw 0 7.5vw;
+  }
+
+  /* Special viewport for adjusting the PraticienContent's placement */
+}
+
+.PraticienMainTitle {
+  text-align: center;
+  color: var(--matterColorLight);
+line-height: 200%;
+
+
+}
+
+.PraticienSubTitle {
+  text-align: center;
+  @apply --marketplaceBodyFontStyles;
+  font-size: 25px;
+line-height: 170%;
+  color: var(--matterColorLight);
+  margin: 0 0 32px 0;
+
+
+}
+
+.PraticienButton {
+  @apply --marketplaceButtonStyles;
+ 
+
+
+
+display: inline-block;
+  @media (--viewportMedium) {
+    display: block;
+    width: 260px;
+  }
+}
+
+
+.pageTitle {
+  text-align: center;
+}
+.pageContent {
+ 
+  text-align: center;
+  float: center;
+}
+
+.pagetable {
+ width: 22%;
+ vertical-align: top;
+  text-align: left;
+  float: center;
+  display: inline-block; 
+  margin-right: +1em; 
+  font-size: 17px;
+
+}
+.pagecolor {
+  background-color: #e6ffff;
+}
+
+
+.pagefontsize {
+  font-size: 25px;
+}
+
+.blue {
+  font-size: 20px;
+  color: var(--marketplaceColor);
+}
+.a_blue {
+
+  font-size: 30px;
+  color: var(--marketplaceColor);
+}
+
+.staticPageWrapper {
+  width: calc(100% - 48px);
+  max-width: 1056px;
+  margin: 24px auto;
+
+  @media (--viewportMedium) {
+    width: calc(100% - 72px);
+    margin: 72px auto;
+  }
+}
+
+.coverImage {
+  width: 100%;
+  height: 528px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin: 32px 0 40px;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (--viewportMedium) {
+    flex-wrap: nowrap;
+  }
+}
+
+.contentSide {
+  font-style: italic;
+
+  @media (--viewportMedium) {
+    width: 20px;
+    margin-right: 103px;
+    margin-top: 8px;
+  }
+}
+
+.contentMain {
+  width: 90%;
+
+  @media (--viewportMedium) {
+    max-width: 650px;
+  }
+}
+
+.subtitle {
+  @apply --marketplaceH3FontStyles;
+  margin-top: 48px;
+  margin-bottom: 24px;
+}
+
+.PraticienButton {
+  @apply --marketplaceButtonStyles;
+
+
+display: inline-block;
+  @media (--viewportMedium) {
+   
+    width: 260px;
+  }
+}
